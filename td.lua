@@ -1428,7 +1428,25 @@ function Fastbots_function.searchChatMembers(chat_id, query, limit)
     Fastbots = 'searchChatMembers',
     chat_id = chat_id,
     query = tostring(query),
-    limit = Fastbots_function.setLimit(400, limit)
+    limit = Fastbots_function.setLimit(2000, limit)
+  }
+end
+function Fastbots_function.getChatJoinRequests(chat_id, invite_link, query, offset_request, limit)
+  return function_core.run_table{
+    Fastbots = 'getChatJoinRequests',
+    chat_id = chat_id,
+    invite_link = tostring(invite_link),
+    query = tostring(query),
+    offset_request = offset_request or 0 ,
+    limit = tonumber(limit)
+  }
+end
+function Fastbots_function.processChatJoinRequest(chat_id, user_id, approve)
+  return function_core.run_table{
+    Fastbots = 'processChatJoinRequest',
+    chat_id = chat_id,
+    user_id = user_id,
+    approve = approve
   }
 end
 function Fastbots_function.getChatAdministrators(chat_id)
